@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,15 +79,11 @@ COVER
     align-items:center;
     justify-content:center;
 
-    padding:28px; /* Ajustado para coincidir con la invitación interior */
+    padding:28px;
 
     position:relative;
     overflow:hidden;
 
-    /*
-       ÚNICO CAMBIO DE DISEÑO EN LA PORTADA:
-       fondo más luminoso, sin el negro tan fuerte.
-    */
     background:
         radial-gradient(
             ellipse at 50% 30%,
@@ -127,9 +124,6 @@ COVER
 
     pointer-events:none;
 
-    /*
-       También se suavizó ligeramente la viñeta.
-    */
     background:
         radial-gradient(
             ellipse at center,
@@ -213,10 +207,9 @@ VERTICAL ENVELOPE
         );
 }
 
-/*
-BASE:
-Un solo cuerpo de papel.
-*/
+/* =========================================================
+BASE
+========================================================= */
 
 .envelope-base{
     position:absolute;
@@ -242,8 +235,6 @@ Un solo cuerpo de papel.
         inset 0 1px 0 rgba(255,255,255,.11),
         inset 0 -30px 55px rgba(14,5,20,.23);
 }
-
-/* textura papel del sobre */
 
 .envelope-base::before{
     content:"";
@@ -312,8 +303,6 @@ LEFT / RIGHT DOORS
         transform 1.25s cubic-bezier(.20,.76,.18,1);
 }
 
-/* textura */
-
 .door::before{
     content:"";
 
@@ -330,8 +319,6 @@ LEFT / RIGHT DOORS
     mix-blend-mode:screen;
 }
 
-/* LEFT */
-
 .door-left{
     left:0;
 
@@ -343,8 +330,6 @@ LEFT / RIGHT DOORS
         0
         5px;
 }
-
-/* RIGHT */
 
 .door-right{
     right:0;
@@ -436,8 +421,6 @@ CENTER ORNAMENT / SEAL
         opacity .5s ease;
 }
 
-/* irregular edge */
-
 .center-seal::before{
     content:"";
 
@@ -454,8 +437,6 @@ CENTER ORNAMENT / SEAL
     border:1px solid rgba(255,247,213,.60);
 }
 
-/* second inner edge */
-
 .center-seal::after{
     content:"";
 
@@ -468,7 +449,9 @@ CENTER ORNAMENT / SEAL
     border:1px solid rgba(121,82,27,.18);
 }
 
-/* monogram */
+/* =========================================================
+MONOGRAM
+========================================================= */
 
 .seal-text{
     position:relative;
@@ -477,7 +460,7 @@ CENTER ORNAMENT / SEAL
 
     font-family:"Cormorant Garamond",serif;
 
-    font-size:25px;
+    font-size:27px;
 
     font-weight:700;
 
@@ -535,7 +518,7 @@ OPEN LABEL
 
     color:#e8d9ad;
 
-    font-size:9px;
+    font-size:11px;
 
     letter-spacing:4px;
 
@@ -572,14 +555,6 @@ OPEN LABEL
 /* =========================================================
 OPEN ANIMATION
 ========================================================= */
-
-/*
-1. Sello desaparece
-2. Puertas se abren
-3. No sale ninguna tarjeta
-4. El sobre desaparece
-5. Aparece directamente la invitación
-*/
 
 .envelope.open .center-seal{
     transform:
@@ -717,7 +692,7 @@ TOPBAR
 
     padding:26px 42px;
 
-    font-size:9px;
+    font-size:11px;
 
     letter-spacing:3px;
 
@@ -778,16 +753,24 @@ PAGES
     }
 }
 
+/* =========================================================
+ORNAMENT
+========================================================= */
+
 .ornament{
     font-family:"Great Vibes",cursive;
 
-    font-size:46px;
+    font-size:58px;
 
     color:#75517e;
 }
 
+/* =========================================================
+EYEBROW
+========================================================= */
+
 .eyebrow{
-    font-size:10px;
+    font-size:13px;
 
     letter-spacing:5px;
 
@@ -796,12 +779,16 @@ PAGES
     color:#86718b;
 }
 
+/* =========================================================
+MAIN TITLES
+========================================================= */
+
 .page h2{
-    margin:17px 0;
+    margin:20px 0;
 
     font-family:"Great Vibes",cursive;
 
-    font-size:clamp(48px,8vw,82px);
+    font-size:clamp(58px,9vw,96px);
 
     line-height:.9;
 
@@ -809,6 +796,10 @@ PAGES
 
     color:#4b315e;
 }
+
+/* =========================================================
+RULE
+========================================================= */
 
 .rule{
     width:85px;
@@ -825,20 +816,28 @@ PAGES
         );
 }
 
+/* =========================================================
+INFO
+========================================================= */
+
 .info{
     font-family:"Cormorant Garamond",serif;
 
-    font-size:16px;
+    font-size:20px;
 
     line-height:1.8;
 
     color:#574d58;
 }
 
+/* =========================================================
+DATE
+========================================================= */
+
 .date{
     font-family:"Cormorant Garamond",serif;
 
-    font-size:31px;
+    font-size:38px;
 
     font-weight:600;
 
@@ -847,10 +846,14 @@ PAGES
     color:#514154;
 }
 
+/* =========================================================
+VENUE
+========================================================= */
+
 .venue{
     font-family:"Cormorant Garamond",serif;
 
-    font-size:27px;
+    font-size:34px;
 
     font-weight:600;
 
@@ -874,12 +877,12 @@ BUTTON
     color:white;
 
     padding:
-        13px
-        25px;
+        15px
+        28px;
 
     letter-spacing:2px;
 
-    font-size:10px;
+    font-size:12px;
 
     text-transform:uppercase;
 
@@ -913,7 +916,7 @@ RSVP
 }
 
 .field{
-    margin:14px 0;
+    margin:16px 0;
 }
 
 .field label{
@@ -921,7 +924,7 @@ RSVP
 
     margin-bottom:7px;
 
-    font-size:9px;
+    font-size:11px;
 
     letter-spacing:2px;
 
@@ -940,11 +943,13 @@ RSVP
 
     background:transparent;
 
-    padding:10px 2px;
+    padding:11px 2px;
 
     outline:none;
 
     color:#433747;
+
+    font-size:16px;
 }
 
 .choices{
@@ -958,13 +963,13 @@ RSVP
 
     border:1px solid #d5cbd8;
 
-    padding:12px;
+    padding:14px;
 
     text-align:center;
 
     cursor:pointer;
 
-    font-size:10px;
+    font-size:12px;
 }
 
 .choice:has(input:checked){
@@ -994,12 +999,14 @@ RSVP
 
     border:1px solid #d5cbd8;
 
-    padding:8px 12px;
+    padding:9px 13px;
+
+    font-size:17px;
 }
 
 .counterbox button{
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
 
     border:0;
 
@@ -1027,7 +1034,7 @@ RSVP
 .thanks strong{
     font-family:"Great Vibes",cursive;
 
-    font-size:38px;
+    font-size:44px;
 
     font-weight:400;
 
@@ -1062,13 +1069,13 @@ NAV
 
     color:#5d4765;
 
-    font-size:24px;
+    font-size:28px;
 
     cursor:pointer;
 }
 
 .counter{
-    font-size:9px;
+    font-size:11px;
 
     letter-spacing:3px;
 
@@ -1096,11 +1103,11 @@ MOBILE
     }
 
     .seal-text{
-        font-size:20px;
+        font-size:22px;
     }
 
     .open-label{
-        font-size:8px;
+        font-size:9px;
         letter-spacing:3px;
     }
 
@@ -1125,7 +1132,7 @@ MOBILE
             20px
             22px;
 
-        font-size:7px;
+        font-size:8px;
         letter-spacing:2px;
     }
 
@@ -1143,19 +1150,44 @@ MOBILE
     }
 
     .ornament{
-        font-size:38px;
+        font-size:46px;
+    }
+
+    .eyebrow{
+        font-size:11px;
     }
 
     .page h2{
-        font-size:56px;
+        font-size:64px;
     }
 
     .date{
-        font-size:25px;
+        font-size:31px;
     }
 
     .info{
-        font-size:14px;
+        font-size:18px;
+    }
+
+    .venue{
+        font-size:29px;
+    }
+
+    .btn{
+        font-size:11px;
+        padding:14px 24px;
+    }
+
+    .field label{
+        font-size:10px;
+    }
+
+    .choice{
+        font-size:12px;
+    }
+
+    .thanks strong{
+        font-size:40px;
     }
 
     .choices{
@@ -1164,6 +1196,14 @@ MOBILE
 
     .nav{
         bottom:13px;
+    }
+
+    .nav button{
+        font-size:26px;
+    }
+
+    .counter{
+        font-size:10px;
     }
 }
 
@@ -1179,11 +1219,23 @@ SMALL PHONES
     }
 
     .seal-text{
-        font-size:18px;
+        font-size:20px;
     }
 
     .page h2{
-        font-size:50px;
+        font-size:58px;
+    }
+
+    .ornament{
+        font-size:42px;
+    }
+
+    .info{
+        font-size:17px;
+    }
+
+    .date{
+        font-size:29px;
     }
 }
 
@@ -1218,19 +1270,14 @@ SOBRE
 
             <div class="envelope" id="env">
 
-                <!-- CUERPO -->
                 <div class="envelope-base"></div>
 
-                <!-- PUERTA IZQUIERDA -->
                 <div class="door door-left"></div>
 
-                <!-- PUERTA DERECHA -->
                 <div class="door door-right"></div>
 
-                <!-- DETALLE CENTRAL -->
                 <div class="center-line"></div>
 
-                <!-- SELLO -->
                 <div class="center-seal">
 
                     <span class="seal-text">
@@ -1266,7 +1313,7 @@ INVITACIÓN
         <div class="topbar">
 
             <span>
-                Ma. Fernanda & Jhonny
+                María Fernanda & Jhonny
             </span>
 
             <span>
@@ -1278,9 +1325,7 @@ INVITACIÓN
 
         <main class="pages">
 
-            <!-- =================================================
-            PÁGINA 1
-            ================================================== -->
+            <!-- PÁGINA 1 -->
 
             <article class="page active">
 
@@ -1295,7 +1340,7 @@ INVITACIÓN
                 </div>
 
                 <h2>
-                    Fernanda<br>
+                    María Fernanda<br>
                     & Jhonny
                 </h2>
 
@@ -1307,9 +1352,7 @@ INVITACIÓN
             </article>
 
 
-            <!-- =================================================
-            PÁGINA 2
-            ================================================== -->
+            <!-- PÁGINA 2 -->
 
             <article class="page">
 
@@ -1335,9 +1378,7 @@ INVITACIÓN
             </article>
 
 
-            <!-- =================================================
-            PÁGINA 3
-            ================================================== -->
+            <!-- PÁGINA 3 -->
 
             <article class="page">
 
@@ -1368,9 +1409,7 @@ INVITACIÓN
             </article>
 
 
-            <!-- =================================================
-            PÁGINA 4
-            ================================================== -->
+            <!-- PÁGINA 4 -->
 
             <article class="page">
 
@@ -1648,12 +1687,6 @@ env.addEventListener("click", function(){
     opened = true;
 
     env.classList.add("open");
-
-    /*
-       Las puertas se abren durante 1.25 s.
-       Luego la portada se desvanece y aparece
-       directamente la primera página.
-    */
 
     setTimeout(function(){
 
@@ -1934,3 +1967,4 @@ document
 
 </body>
 </html>
+```
