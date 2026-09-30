@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#24152e">
+
+<title>Ma. Fernanda & Jhonny</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+VARIABLES
+========================================================= */
+
+:root{
+    --violet:#321c3b;
+    --violet-mid:#43264d;
+    --violet-light:#573660;
+    --violet-dark:#211126;
+    --violet-deep:#130914;
+
+    --champagne:#d7b96f;
+    --champagne-light:#f0dda5;
+    --champagne-dark:#927032;
+
+    --paper:#f5f0e6;
+    --paper-light:#faf7ef;
+    --paper-shadow:#e8dfd1;
+
+    --ink:#33243a;
+    --muted:#796a7c;
+}
+
+/* =========================================================
+RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:"Montserrat",sans-serif;
+    background:var(--violet-deep);
+    color:var(--ink);
+    overflow-x:hidden;
+}
+
+button,
+input,
+textarea{
+    font:inherit;
+}
+
+/* =========================================================
+COVER
+========================================================= */
+
+#cover{
+    min-height:100vh;
+    min-height:100svh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:28px; /* Ajustado para coincidir con la invitación interior */
+
+    position:relative;
+    overflow:hidden;
+
+    /*
+       ÚNICO CAMBIO DE DISEÑO EN LA PORTADA:
+       fondo más luminoso, sin el negro tan fuerte.
+    */
+    background:
+        radial-gradient(
+            ellipse at 50% 30%,
+            #76527b 0%,
+            #604066 28%,
+            #482d4d 62%,
+            #321d38 100%
+        );
+
+    transition:opacity .55s ease;
+}
+
+#cover::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.24;
+
+    background:
+        radial-gradient(
+            circle at 17% 22%,
+            rgba(255,255,255,.16) 0 1px,
+            transparent 1.5px
+        );
+
+    background-size:120px 120px;
+}
+
+#cover::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    /*
+       También se suavizó ligeramente la viñeta.
+    */
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,.20) 100%
+        );
+}
+
+/* =========================================================
+SCENE
+========================================================= */
+
+.cover-content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+}
+
+.envelope-scene{
+    width:100%;
+    height:100%;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    perspective:1800px;
+}
+
+/* =========================================================
+SHADOW
+========================================================= */
+
+.envelope-shadow{
+    position:absolute;
+
+    left:50%;
+    bottom:8%;
+
+    width:min(400px,70vw);
+    height:45px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.48);
+
+    filter:blur(25px);
+
+    transition:
+        transform 1.4s ease,
+        opacity 1.2s ease;
+}
+
+/* =========================================================
+VERTICAL ENVELOPE
+========================================================= */
+
+.envelope{
+    position:relative;
+
+    width:100%;
+    max-width:940px;
+    height:calc(100vh - 56px);
+    height:calc(100svh - 56px);
+
+    transform-style:preserve-3d;
+
+    cursor:pointer;
+
+    filter:
+        drop-shadow(
+            0 28px 28px rgba(0,0,0,.40)
+        );
+}
+
+/*
+BASE:
+Un solo cuerpo de papel.
+*/
+
+.envelope-base{
+    position:absolute;
+    inset:0;
+
+    z-index:1;
+
+    overflow:hidden;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            150deg,
+            #493052 0%,
+            #3b2545 48%,
+            #2c1936 100%
+        );
+
+    border:1px solid rgba(239,214,157,.42);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.11),
+        inset 0 -30px 55px rgba(14,5,20,.23);
+}
+
+/* textura papel del sobre */
+
+.envelope-base::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    opacity:.20;
+
+    pointer-events:none;
+
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='260' viewBox='0 0 180 260'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.32' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.20'/%3E%3C/svg%3E");
+
+    mix-blend-mode:screen;
+}
+
+.envelope-base::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255,255,255,.08),
+            transparent 25%,
+            transparent 70%,
+            rgba(0,0,0,.12)
+        );
+}
+
+/* =========================================================
+LEFT / RIGHT DOORS
+========================================================= */
+
+.door{
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    width:51%;
+
+    z-index:12;
+
+    background:
+        linear-gradient(
+            135deg,
+            #43284e 0%,
+            #392141 52%,
+            #2c1835 100%
+        );
+
+    border:1px solid rgba(238,214,162,.34);
+
+    box-shadow:
+        inset 0 0 35px rgba(0,0,0,.09);
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform 1.25s cubic-bezier(.20,.76,.18,1);
+}
+
+/* textura */
+
+.door::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.17;
+
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.45' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+
+    mix-blend-mode:screen;
+}
+
+/* LEFT */
+
+.door-left{
+    left:0;
+
+    transform-origin:left center;
+
+    border-radius:
+        5px
+        0
+        0
+        5px;
+}
+
+/* RIGHT */
+
+.door-right{
+    right:0;
+
+    transform-origin:right center;
+
+    border-radius:
+        0
+        5px
+        5px
+        0;
+}
+
+/* =========================================================
+ORGANIC PAPER EDGES
+========================================================= */
+
+.door-left::after,
+.door-right::after{
+    content:"";
+
+    position:absolute;
+
+    top:5%;
+    bottom:5%;
+
+    width:1px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(238,214,163,.28),
+            transparent
+        );
+}
+
+.door-left::after{
+    right:0;
+}
+
+.door-right::after{
+    left:0;
+}
+
+/* =========================================================
+CENTER ORNAMENT / SEAL
+========================================================= */
+
+.center-seal{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:82px;
+    height:82px;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:20;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle at 32% 25%,
+            #f2dfaa 0%,
+            #d8b96d 30%,
+            #b4873c 64%,
+            #856027 100%
+        );
+
+    border:2px solid rgba(255,244,201,.72);
+
+    box-shadow:
+        0 9px 15px rgba(0,0,0,.36),
+        inset 4px 4px 8px rgba(255,255,255,.30),
+        inset -5px -5px 8px rgba(83,52,17,.28);
+
+    transition:
+        transform .75s ease,
+        opacity .5s ease;
+}
+
+/* irregular edge */
+
+.center-seal::before{
+    content:"";
+
+    position:absolute;
+
+    inset:6px;
+
+    border-radius:
+        47%
+        52%
+        49%
+        53%;
+
+    border:1px solid rgba(255,247,213,.60);
+}
+
+/* second inner edge */
+
+.center-seal::after{
+    content:"";
+
+    position:absolute;
+
+    inset:12px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(121,82,27,.18);
+}
+
+/* monogram */
+
+.seal-text{
+    position:relative;
+
+    z-index:3;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    letter-spacing:-2px;
+
+    color:#76521c;
+
+    text-shadow:
+        1px 1px 0 rgba(255,241,188,.72),
+        -1px -1px 1px rgba(102,66,18,.42);
+}
+
+/* =========================================================
+SMALL GOLD DETAIL
+========================================================= */
+
+.center-line{
+    position:absolute;
+
+    left:50%;
+    top:12%;
+
+    width:1px;
+    height:76%;
+
+    z-index:6;
+
+    transform:translateX(-50%);
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(224,192,117,.24) 20%,
+            rgba(224,192,117,.24) 80%,
+            transparent
+        );
+
+    pointer-events:none;
+
+    transition:opacity .5s ease;
+}
+
+/* =========================================================
+OPEN LABEL
+========================================================= */
+
+.open-label{
+    position:absolute;
+
+    left:50%;
+    bottom:1%;
+
+    transform:translateX(-50%);
+
+    color:#e8d9ad;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    white-space:nowrap;
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+}
+
+.open-label::before{
+    content:"";
+
+    display:block;
+
+    width:60px;
+    height:1px;
+
+    margin:
+        0 auto
+        9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--champagne),
+            transparent
+        );
+}
+
+/* =========================================================
+OPEN ANIMATION
+========================================================= */
+
+/*
+1. Sello desaparece
+2. Puertas se abren
+3. No sale ninguna tarjeta
+4. El sobre desaparece
+5. Aparece directamente la invitación
+*/
+
+.envelope.open .center-seal{
+    transform:
+        translate(-50%,-50%)
+        scale(.45);
+
+    opacity:0;
+}
+
+.envelope.open .door-left{
+    transform:
+        rotateY(-105deg);
+}
+
+.envelope.open .door-right{
+    transform:
+        rotateY(105deg);
+}
+
+.envelope.open .center-line{
+    opacity:0;
+}
+
+.envelope.open ~ .envelope-shadow{
+    transform:
+        translateX(-50%)
+        scale(.72);
+
+    opacity:.22;
+}
+
+.envelope.open + .envelope-shadow + .open-label{
+    opacity:0;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+}
+
+/* =========================================================
+INVITATION
+========================================================= */
+
+#invitation{
+    display:none;
+
+    min-height:100vh;
+    min-height:100svh;
+
+    padding:28px;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 20%,
+            #ece3ef,
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #ddd4e1,
+            #fbf9f5 50%,
+            #e5dce7
+        );
+}
+
+/* =========================================================
+BOOK
+========================================================= */
+
+.book{
+    position:relative;
+
+    max-width:940px;
+
+    min-height:
+        calc(100vh - 56px);
+
+    min-height:
+        calc(100svh - 56px);
+
+    margin:auto;
+
+    background:
+        linear-gradient(
+            135deg,
+            #faf8f3,
+            #f7f3eb
+        );
+
+    box-shadow:
+        0 25px 70px rgba(38,22,47,.22);
+
+    overflow:hidden;
+}
+
+.book::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.15;
+
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.42' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.10'/%3E%3C/svg%3E");
+
+    mix-blend-mode:multiply;
+}
+
+.book::after{
+    content:"";
+
+    position:absolute;
+
+    inset:15px;
+
+    border:1px solid rgba(137,103,143,.24);
+
+    pointer-events:none;
+}
+
+/* =========================================================
+TOPBAR
+========================================================= */
+
+.topbar{
+    position:relative;
+    z-index:4;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:26px 42px;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:#80698a;
+}
+
+/* =========================================================
+PAGES
+========================================================= */
+
+.pages{
+    position:relative;
+    z-index:3;
+
+    min-height:
+        calc(100vh - 135px);
+
+    min-height:
+        calc(100svh - 135px);
+
+    display:grid;
+
+    place-items:center;
+
+    padding:
+        30px
+        60px
+        75px;
+}
+
+.page{
+    display:none;
+
+    width:min(650px,100%);
+
+    text-align:center;
+
+    animation:
+        pageIn .65s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.ornament{
+    font-family:"Great Vibes",cursive;
+
+    font-size:46px;
+
+    color:#75517e;
+}
+
+.eyebrow{
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    color:#86718b;
+}
+
+.page h2{
+    margin:17px 0;
+
+    font-family:"Great Vibes",cursive;
+
+    font-size:clamp(48px,8vw,82px);
+
+    line-height:.9;
+
+    font-weight:400;
+
+    color:#4b315e;
+}
+
+.rule{
+    width:85px;
+    height:1px;
+
+    margin:22px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #c7a95d,
+            transparent
+        );
+}
+
+.info{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    color:#574d58;
+}
+
+.date{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:31px;
+
+    font-weight:600;
+
+    letter-spacing:4px;
+
+    color:#514154;
+}
+
+.venue{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:27px;
+
+    font-weight:600;
+
+    color:#4b315e;
+}
+
+/* =========================================================
+BUTTON
+========================================================= */
+
+.btn{
+    border:1px solid #b69a60;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4d315d,
+            #38223f
+        );
+
+    color:white;
+
+    padding:
+        13px
+        25px;
+
+    letter-spacing:2px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 18px rgba(48,32,61,.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 23px rgba(48,32,61,.23);
+}
+
+/* =========================================================
+RSVP
+========================================================= */
+
+.form{
+    max-width:510px;
+
+    margin:15px auto;
+
+    text-align:left;
+}
+
+.field{
+    margin:14px 0;
+}
+
+.field label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#756278;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+
+    border:0;
+
+    border-bottom:1px solid #cfc4d1;
+
+    background:transparent;
+
+    padding:10px 2px;
+
+    outline:none;
+
+    color:#433747;
+}
+
+.choices{
+    display:flex;
+
+    gap:10px;
+}
+
+.choice{
+    flex:1;
+
+    border:1px solid #d5cbd8;
+
+    padding:12px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-size:10px;
+}
+
+.choice:has(input:checked){
+    border-color:#6d4b78;
+
+    background:#f0eaf2;
+}
+
+.choice input{
+    display:none;
+}
+
+.conditional{
+    display:none;
+}
+
+.conditional.show{
+    display:block;
+}
+
+.counterbox{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border:1px solid #d5cbd8;
+
+    padding:8px 12px;
+}
+
+.counterbox button{
+    width:30px;
+    height:30px;
+
+    border:0;
+
+    background:#4d315d;
+
+    color:white;
+
+    border-radius:50%;
+
+    cursor:pointer;
+}
+
+.thanks{
+    display:none;
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.thanks.show{
+    display:block;
+}
+
+.thanks strong{
+    font-family:"Great Vibes",cursive;
+
+    font-size:38px;
+
+    font-weight:400;
+
+    color:#5a3d65;
+}
+
+/* =========================================================
+NAV
+========================================================= */
+
+.nav{
+    position:absolute;
+
+    bottom:18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    z-index:10;
+}
+
+.nav button{
+    border:0;
+
+    background:transparent;
+
+    color:#5d4765;
+
+    font-size:24px;
+
+    cursor:pointer;
+}
+
+.counter{
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    color:#8d7b90;
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    #cover{
+        padding:10px;
+    }
+
+    .envelope{
+        height:calc(100vh - 20px);
+        height:calc(100svh - 20px);
+    }
+
+    .center-seal{
+        width:64px;
+        height:64px;
+    }
+
+    .seal-text{
+        font-size:20px;
+    }
+
+    .open-label{
+        font-size:8px;
+        letter-spacing:3px;
+    }
+
+    #invitation{
+        padding:10px;
+    }
+
+    .book{
+        min-height:
+            calc(100vh - 20px);
+
+        min-height:
+            calc(100svh - 20px);
+    }
+
+    .book::after{
+        inset:10px;
+    }
+
+    .topbar{
+        padding:
+            20px
+            22px;
+
+        font-size:7px;
+        letter-spacing:2px;
+    }
+
+    .pages{
+        min-height:
+            calc(100vh - 105px);
+
+        min-height:
+            calc(100svh - 105px);
+
+        padding:
+            20px
+            25px
+            65px;
+    }
+
+    .ornament{
+        font-size:38px;
+    }
+
+    .page h2{
+        font-size:56px;
+    }
+
+    .date{
+        font-size:25px;
+    }
+
+    .info{
+        font-size:14px;
+    }
+
+    .choices{
+        flex-direction:column;
+    }
+
+    .nav{
+        bottom:13px;
+    }
+}
+
+/* =========================================================
+SMALL PHONES
+========================================================= */
+
+@media(max-width:390px){
+
+    .center-seal{
+        width:57px;
+        height:57px;
+    }
+
+    .seal-text{
+        font-size:18px;
+    }
+
+    .page h2{
+        font-size:50px;
+    }
+}
+
+/* =========================================================
+ACCESSIBILITY
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        transition-duration:.01ms !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+SOBRE
+======================================================= -->
+
+<div id="cover">
+
+    <div class="cover-content">
+
+        <div class="envelope-scene">
+
+            <div class="envelope" id="env">
+
+                <!-- CUERPO -->
+                <div class="envelope-base"></div>
+
+                <!-- PUERTA IZQUIERDA -->
+                <div class="door door-left"></div>
+
+                <!-- PUERTA DERECHA -->
+                <div class="door door-right"></div>
+
+                <!-- DETALLE CENTRAL -->
+                <div class="center-line"></div>
+
+                <!-- SELLO -->
+                <div class="center-seal">
+
+                    <span class="seal-text">
+                        M & J
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="envelope-shadow"></div>
+
+            <div class="open-label">
+                <span></span>
+                Toca el sello para abrir
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+INVITACIÓN
+======================================================= -->
+
+<section id="invitation">
+
+    <div class="book">
+
+        <div class="topbar">
+
+            <span>
+                Ma. Fernanda & Jhonny
+            </span>
+
+            <span>
+                08 · 10 · 2026
+            </span>
+
+        </div>
+
+
+        <main class="pages">
+
+            <!-- =================================================
+            PÁGINA 1
+            ================================================== -->
+
+            <article class="page active">
+
+                <div class="ornament">
+                    Nuestra boda
+                </div>
+
+                <div class="rule"></div>
+
+                <div class="eyebrow">
+                    Con mucha alegría
+                </div>
+
+                <h2>
+                    Ma. Fernanda<br>
+                    & Jhonny
+                </h2>
+
+                <p class="info">
+                    Queremos compartir contigo uno de los días
+                    más importantes de nuestras vidas.
+                </p>
+
+            </article>
+
+
+            <!-- =================================================
+            PÁGINA 2
+            ================================================== -->
+
+            <article class="page">
+
+                <div class="eyebrow">
+                    La ceremonia
+                </div>
+
+                <div class="rule"></div>
+
+                <h2>
+                    08 de octubre
+                </h2>
+
+                <div class="date">
+                    15h30
+                </div>
+
+                <p class="info">
+                    Registro Civil<br>
+                    Las Bethlemitas · Latacunga
+                </p>
+
+            </article>
+
+
+            <!-- =================================================
+            PÁGINA 3
+            ================================================== -->
+
+            <article class="page">
+
+                <div class="eyebrow">
+                    Después de la ceremonia
+                </div>
+
+                <div class="rule"></div>
+
+                <h2>
+                    La Choza
+                </h2>
+
+                <p class="info">
+                    Celebraremos este momento especial
+                    rodeados de las personas que queremos.
+                </p>
+
+                <br>
+
+                <button
+                    class="btn"
+                    onclick="maps()"
+                >
+                    Ver ubicación
+                </button>
+
+            </article>
+
+
+            <!-- =================================================
+            PÁGINA 4
+            ================================================== -->
+
+            <article class="page">
+
+                <div class="eyebrow">
+                    Confirmación
+                </div>
+
+                <div class="rule"></div>
+
+                <h2>
+                    ¿Nos acompañas?
+                </h2>
+
+                <form
+                    class="form"
+                    id="rsvp"
+                >
+
+                    <div class="field">
+
+                        <label>
+                            Nombre y apellido
+                        </label>
+
+                        <input
+                            id="name"
+                            required
+                            placeholder="Tu nombre"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            ¿Asistirás?
+                        </label>
+
+                        <div class="choices">
+
+                            <label class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="attend"
+                                    value="yes"
+                                >
+
+                                Sí, asistiré
+
+                            </label>
+
+                            <label class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="attend"
+                                    value="no"
+                                >
+
+                                No podré asistir
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="conditional"
+                        id="cond"
+                    >
+
+                        <div class="field">
+
+                            <label>
+                                Adultos
+                            </label>
+
+                            <div class="counterbox">
+
+                                <button
+                                    type="button"
+                                    onclick="change('adults',-1)"
+                                >
+                                    −
+                                </button>
+
+                                <b id="adults">
+                                    1
+                                </b>
+
+                                <button
+                                    type="button"
+                                    onclick="change('adults',1)"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                ¿Asistirán niños?
+                            </label>
+
+                            <div class="choices">
+
+                                <label class="choice">
+
+                                    <input
+                                        type="radio"
+                                        name="kids"
+                                        value="yes"
+                                    >
+
+                                    Sí
+
+                                </label>
+
+                                <label class="choice">
+
+                                    <input
+                                        type="radio"
+                                        name="kids"
+                                        value="no"
+                                        checked
+                                    >
+
+                                    No
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="field"
+                            id="kidbox"
+                            style="display:none"
+                        >
+
+                            <label>
+                                Niños
+                            </label>
+
+                            <div class="counterbox">
+
+                                <button
+                                    type="button"
+                                    onclick="change('kids',-1)"
+                                >
+                                    −
+                                </button>
+
+                                <b id="kids">
+                                    1
+                                </b>
+
+                                <button
+                                    type="button"
+                                    onclick="change('kids',1)"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Mensaje (opcional)
+                            </label>
+
+                            <textarea
+                                id="msg"
+                                rows="2"
+                                placeholder="Un mensaje para los novios"
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn"
+                        type="submit"
+                        id="submit"
+                    >
+                        Selecciona una opción
+                    </button>
+
+                </form>
+
+
+                <div
+                    class="thanks"
+                    id="thanks"
+                >
+
+                    <strong>
+                        Gracias por avisarnos
+                    </strong>
+
+                    <p class="info">
+                        Valoramos mucho que nos lo hagas saber. 🤍
+                    </p>
+
+                </div>
+
+            </article>
+
+        </main>
+
+
+        <!-- NAVEGACIÓN -->
+
+        <div class="nav">
+
+            <button onclick="go(-1)">
+                ‹
+            </button>
+
+            <span
+                class="counter"
+                id="counter"
+            >
+                1 / 4
+            </span>
+
+            <button onclick="go(1)">
+                ›
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+APERTURA
+========================================================= */
+
+const env =
+    document.getElementById("env");
+
+const cover =
+    document.getElementById("cover");
+
+const invitation =
+    document.getElementById("invitation");
+
+let opened = false;
+
+env.addEventListener("click", function(){
+
+    if(opened) return;
+
+    opened = true;
+
+    env.classList.add("open");
+
+    /*
+       Las puertas se abren durante 1.25 s.
+       Luego la portada se desvanece y aparece
+       directamente la primera página.
+    */
+
+    setTimeout(function(){
+
+        cover.style.opacity = "0";
+
+        setTimeout(function(){
+
+            cover.style.display = "none";
+
+            invitation.style.display = "block";
+
+            window.scrollTo(0,0);
+
+        },550);
+
+    },1450);
+
+});
+
+
+/* =========================================================
+PÁGINAS
+========================================================= */
+
+let page = 0;
+
+const pages =
+    [...document.querySelectorAll(".page")];
+
+function go(direction){
+
+    page =
+        Math.max(
+            0,
+            Math.min(
+                pages.length - 1,
+                page + direction
+            )
+        );
+
+    pages.forEach(function(item,index){
+
+        item.classList.toggle(
+            "active",
+            index === page
+        );
+
+    });
+
+    document.getElementById("counter")
+        .textContent =
+        `${page + 1} / ${pages.length}`;
+}
+
+
+/* =========================================================
+MAPS
+========================================================= */
+
+function maps(){
+
+    window.open(
+        "https://maps.app.goo.gl/Z2FUuwsBq1KfUSSz7",
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+RSVP
+========================================================= */
+
+let vals = {
+    adults:1,
+    kids:1
+};
+
+function change(key,delta){
+
+    vals[key] =
+        Math.max(
+            1,
+            vals[key] + delta
+        );
+
+    document.getElementById(key)
+        .textContent =
+        vals[key];
+
+}
+
+
+/* =========================================================
+ASISTENCIA
+========================================================= */
+
+document
+    .querySelectorAll('input[name="attend"]')
+    .forEach(function(input){
+
+        input.addEventListener(
+            "change",
+            function(){
+
+                const yes =
+                    document.querySelector(
+                        'input[name="attend"]:checked'
+                    )?.value === "yes";
+
+                document
+                    .getElementById("cond")
+                    .classList
+                    .toggle("show",yes);
+
+                document
+                    .getElementById("submit")
+                    .textContent =
+                    yes
+                        ? "Confirmar por WhatsApp"
+                        : "Gracias por avisarnos";
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+NIÑOS
+========================================================= */
+
+document
+    .querySelectorAll('input[name="kids"]')
+    .forEach(function(input){
+
+        input.addEventListener(
+            "change",
+            function(){
+
+                const show =
+                    document.querySelector(
+                        'input[name="kids"]:checked'
+                    )?.value === "yes";
+
+                document
+                    .getElementById("kidbox")
+                    .style.display =
+                    show
+                        ? "block"
+                        : "none";
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+ENVÍO
+========================================================= */
+
+document
+    .getElementById("rsvp")
+    .addEventListener(
+        "submit",
+        function(event){
+
+            event.preventDefault();
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+            const attendance =
+                document.querySelector(
+                    'input[name="attend"]:checked'
+                )?.value;
+
+            if(!attendance) return;
+
+            if(attendance === "no"){
+
+                document
+                    .getElementById("rsvp")
+                    .style.display = "none";
+
+                document
+                    .getElementById("thanks")
+                    .classList
+                    .add("show");
+
+                return;
+            }
+
+            const kids =
+                document.querySelector(
+                    'input[name="kids"]:checked'
+                )?.value === "yes"
+                    ? vals.kids
+                    : 0;
+
+            const msg =
+                document
+                    .getElementById("msg")
+                    .value
+                    .trim();
+
+            const text =
+`Hola Ma. Fernanda y Jhonny 🤍
+Quiero confirmar mi asistencia a su boda.
+👤 Nombre: ${name}
+👥 Adultos: ${vals.adults}
+👧 Niños: ${kids}` +
+(
+    msg
+        ? `\n💌 Mensaje:\n${msg}`
+        : ""
+) +
+`
+Nos vemos el 08 de octubre. 🤍`;
+
+            window.location.href =
+                "https://wa.me/593995146145?text=" +
+                encodeURIComponent(text);
+
+        }
+    );
+
+
+/* =========================================================
+SWIPE
+========================================================= */
+
+let startX = 0;
+
+document
+    .querySelector(".pages")
+    .addEventListener(
+        "touchstart",
+        function(event){
+
+            startX =
+                event.changedTouches[0].screenX;
+
+        },
+        {passive:true}
+    );
+
+
+document
+    .querySelector(".pages")
+    .addEventListener(
+        "touchend",
+        function(event){
+
+            const delta =
+                event.changedTouches[0].screenX -
+                startX;
+
+            if(Math.abs(delta) > 55){
+
+                go(
+                    delta < 0
+                        ? 1
+                        : -1
+                );
+
+            }
+
+        },
+        {passive:true}
+    );
+
+</script>
+
+</body>
+</html>
